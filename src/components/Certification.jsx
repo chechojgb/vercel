@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExternalLink, Download, CheckCircle2, Start, Award, Maximize, Shield, Calendar, Eye, X, Info  } from "lucide-react";
+import { ExternalLink, Download, CheckCircle2, Star, Award, Maximize, Shield, Calendar, Eye, X, Info  } from "lucide-react";
 
 export default function CertificationsSection() {
   const [selectedCert, setSelectedCert] = useState(0);
