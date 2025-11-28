@@ -4,11 +4,13 @@ import TechStack from './components/TechStack';
 import ProjectsSection from './components/ProjectSection';
 import GlobalStars from './components/GlobalStarts';
 import CertificationsSection from './components/Certification';
+import NavigationBar from './components/Navigator';
 
 export default function Welcome() {
     
     return (
         <>
+            <NavigationBar/>
 
             {/* Contenedor global de estrellas */}
             <GlobalStars />

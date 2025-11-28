@@ -129,7 +129,7 @@ export default function TechStack() {
 
   return (
     <section
-      id="tech-stack"
+      id="tech"
       ref={sectionRef}
       className="relative bg-[#020617] py-28 px-6 sm:px-8 text-white overflow-hidden z-20"
     >

@@ -35,7 +35,7 @@ export default function HeroSection() {
   }, [typedText, isDeleting, currentRole]);
 
   return (
-    <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8 z-20 pb-10 bg-[#020617] overflow-hidden">
+    <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8 z-20 pb-10 bg-[#020617] overflow-hidden" id="inicio">
       
       {/* 🔵 Blurs decorativos animados (sin estrellas) */}
       <div className="absolute inset-0 overflow-hidden">
