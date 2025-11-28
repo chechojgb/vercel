@@ -21,7 +21,7 @@ export default function AboutMe() {
 
   return (
     <section
-      id="sobre-mi"
+      id="about"
       ref={sectionRef}
       className="relative bg-[#020617] text-white py-28 px-6 lg:px-8 overflow-hidden z-20"
     >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ExternalLink, Download, CheckCircle2, Start, Award, Maximize, Shield, Calendar, Eye, X, Info  } from "lucide-react";
 
 export default function CertificationsSection() {
   const [selectedCert, setSelectedCert] = useState(0);
@@ -137,7 +138,7 @@ export default function CertificationsSection() {
               {cert.featured && (
                 <div className="absolute top-4 left-4 z-10">
                   <span className="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 text-amber-300">
-                    <i className="fas fa-star mr-1"></i>
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                     Destacado
                   </span>
                 </div>
@@ -160,7 +161,7 @@ export default function CertificationsSection() {
                   // Fallback si la imagen no carga
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
                     <div className="text-center p-8">
-                      <i className="fas fa-certificate text-6xl text-cyan-400/50 mb-4 group-hover:scale-110 transition-transform duration-300"></i>
+                      <Award className="w-16 h-16 text-cyan-400/50 mb-4 group-hover:scale-110 transition-transform duration-300" />
                       <p className="text-gray-400 text-sm">Certificado {cert.title}</p>
                       <p className="text-gray-500 text-xs mt-2">Click para ver</p>
                     </div>
@@ -171,7 +172,7 @@ export default function CertificationsSection() {
                 <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/10 transition-all duration-300 flex items-center justify-center">
                   <div className="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <div className="bg-black/50 rounded-full p-4 border border-cyan-400/50">
-                      <i className="fas fa-expand text-cyan-400 text-xl"></i>
+                      <Maximize className="w-5 h-5 text-cyan-400" />
                     </div>
                   </div>
                 </div>
@@ -189,13 +190,13 @@ export default function CertificationsSection() {
                 </div>
 
                 <p className="text-cyan-400 font-medium text-sm mb-4 flex items-center gap-2">
-                  <i className="fas fa-shield-alt text-xs"></i>
+                  <Shield className="w-3 h-3" />
                   {cert.issuer}
                 </p>
 
                 <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
                   <span className="flex items-center gap-1">
-                    <i className="fas fa-calendar"></i>
+                    <Calendar className="w-4 h-4" />
                     {cert.date}
                   </span>
                   <span className="font-mono text-xs bg-gray-700/50 px-2 py-1 rounded">
@@ -226,7 +227,7 @@ export default function CertificationsSection() {
                     onClick={() => openModal(index)}
                     className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-700/50 hover:bg-cyan-500/20 border border-gray-600/50 hover:border-cyan-400/30 text-gray-300 hover:text-cyan-400 py-2 px-3 rounded-lg text-sm transition-all duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-eye"></i>
+                    <Eye className="w-4 h-4" />
                     Ver
                   </button>
                   <a
@@ -235,7 +236,7 @@ export default function CertificationsSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 bg-gray-700/50 hover:bg-green-500/20 border border-gray-600/50 hover:border-green-400/30 text-gray-300 hover:text-green-400 py-2 px-3 rounded-lg text-sm transition-all duration-300"
                   >
-                    <i class="fas fa-external-link-alt"></i>
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -266,7 +267,7 @@ export default function CertificationsSection() {
                 onClick={() => setIsModalOpen(false)}
                 className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700/50 rounded-lg"
               >
-                <i className="fas fa-times text-xl"></i>
+                <X className="w-5 h-5" />
               </button>
             </div>
 
@@ -303,7 +304,7 @@ export default function CertificationsSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <i className="fas fa-info-circle text-cyan-400"></i>
+                    <Info className="w-5 h-5 text-cyan-400" />
                     Información del Certificado
                   </h4>
                   <div className="space-y-3">
@@ -328,7 +329,7 @@ export default function CertificationsSection() {
 
                 <div>
                   <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <i className="fas fa-check-circle text-green-400"></i>
+                    <CheckCircle2 className="w-5 h-5 text-green-400" />
                     Habilidades Validadas
                   </h4>
                   <div className="flex flex-wrap gap-2">
@@ -352,14 +353,14 @@ export default function CertificationsSection() {
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-4 px-6 rounded-xl hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
                 >
-                  <i className="fas fa-external-link-alt"></i>
+                  <ExternalLink className="w-4 h-4" />
                   Verificar en Sitio Oficial
                 </a>
                 <button 
                     onClick={handleDownload}
                     className="inline-flex items-center justify-center gap-3 bg-gray-700/50 border border-gray-600/50 text-gray-300 font-semibold py-4 px-6 rounded-xl hover:border-cyan-400/30 hover:text-white transition-all duration-300"
                     >
-                    <i className="fas fa-download"></i>
+                    <Download className="w-4 h-4" />
                     Descargar PDF
                 </button>
               </div>
