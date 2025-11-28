@@ -46,7 +46,7 @@ export default function CertificationsSection() {
       image: "/certificate/linux-sena_page.jpg",
       url: "https://certificados.sena.edu.co/CertificadoDigital/com.sena.consultacer",
       category: "DevOps",
-      featured: true,
+      featured: false,
       pdf: "/certificate/Coursera-React-Basic.pdf",
     },
     {
@@ -135,14 +135,14 @@ export default function CertificationsSection() {
               className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden hover:border-cyan-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/10"
             >
               {/* Badge destacado */}
-              {cert.featured && (
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 text-amber-300">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    Destacado
-                  </span>
-                </div>
-              )}
+                {cert.featured && (
+                    <div className="absolute top-4 left-4 z-10">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 text-amber-300">
+                        <Star className="w-3 h-3 fill-amber-900 text-amber-900" />
+                        Destacado
+                        </span>
+                    </div>
+                )}
 
               {/* Imagen del certificado */}
               <div 
