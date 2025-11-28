@@ -289,7 +289,7 @@ export default function CertificationsSection() {
                   ) : (
                     <div className="aspect-video w-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-gray-700/50 flex items-center justify-center">
                       <div className="text-center">
-                        <i className="fas fa-certificate text-8xl text-cyan-400/30 mb-4"></i>
+                        <Award className="w-20 h-20 text-cyan-400/30 mb-4" />
                         <p className="text-gray-400 text-lg">Imagen no disponible</p>
                         <p className="text-gray-500 text-sm mt-2">
                           {certifications[selectedCert].title}
