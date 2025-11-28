@@ -3,6 +3,7 @@ import AboutMe from './components/AboutMe';
 import TechStack from './components/TechStack';
 import ProjectsSection from './components/ProjectSection';
 import GlobalStars from './components/GlobalStarts';
+import CertificationsSection from './components/Certification';
 
 export default function Welcome() {
     
@@ -16,6 +17,7 @@ export default function Welcome() {
             <AboutMe/>
             <TechStack/>
             <ProjectsSection/>
+            <CertificationsSection/>
         </>
     );
 }

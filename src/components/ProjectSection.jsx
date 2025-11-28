@@ -36,6 +36,21 @@ const ProjectsSection = () => {
 
         <div className="flex flex-col gap-20">
           <ProjectCard
+            pageTitle="TrackerOS"
+            image="images/projects/trackerOS.png"
+            himagelg="70"
+            himagexl="70"
+            title="Tracker OS - Control de acciones en dispositivos"
+            description="Es una aplicación de análisis y productividad diseñada con un enfoque radical en la privacidad. Funciona como un asistente inteligente que te ayuda a entender y mejorar tus hábitos digitales, pero con una diferencia fundamental: todo ocurre localmente en tu dispositivo."
+            tags={[
+              { name: "Python", class: "bg-yellow-500/20 text-yellow-400 border border-yellow-400/30", icon: "images/logos/python.svg" },
+              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
+            ]}
+            github="https://github.com/chechojgb/tracker-front-react"
+            preview={() => setPreview("azzu")}
+            route='https://tracker-front-react.vercel.app'
+          />
+          <ProjectCard
             pageTitle="AZZU"
             image="images/projects/nexoAgents.png"
             himagelg="70"
@@ -54,7 +69,7 @@ const ProjectsSection = () => {
           />
           <ProjectCard
             pageTitle="Button Lovers"
-            image="images/projects/ButtonLovers.png"
+            image="images/projects/ButtonLovers2.png"
             himagelg="70"
             himagexl="auto"
             title="B&A (Empresa creadora de diseños de botones) "
