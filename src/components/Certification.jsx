@@ -19,7 +19,7 @@ export default function CertificationsSection() {
       url: "https://www.coursera.org/account/accomplishments/specialization/KZ2HNGDF0GO2",
       category: "Frontend",
       featured: true,
-      pdf: "/certificate/Coursera-Advance-React",
+      pdf: "/certificate/Coursera-Advance-React.pdf",
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ export default function CertificationsSection() {
       url: "https://www.coursera.org/account/accomplishments/verify/QGQMK1JVTNCY",
       category: "Frontend",
       featured: true,
-      pdf: "/certificate/Coursera-Advance-React",
+      pdf: "/certificate/Coursera-Advance-React.pdf",
     },
     {
       id: 3,
@@ -60,7 +60,7 @@ export default function CertificationsSection() {
       url: "https://www.udemy.com/certificate/UC-f136b091-a4ea-4869-b8d2-55b5dc034fbd/",
       category: "Backend",
       featured: false,
-      pdf: "/certificate/Coursera-React-Basic.pdf",
+      pdf: "/certificate/Laravel-udemy.pdf",
     },
     {
       id: 5,
@@ -74,7 +74,7 @@ export default function CertificationsSection() {
       url: "https://certificados.sena.edu.co/CertificadoDigital/com.sena.consultacer",
       category: "DevOps",
       featured: false,
-      pdf: "/certificate/Coursera-React-Basic.pdf",
+      pdf: "/certificate/linux-sena.pdf",
     },
     {
       id: 6,
@@ -88,7 +88,7 @@ export default function CertificationsSection() {
       url: "https://certificados.sena.edu.co/CertificadoDigital/com.sena.consultacer",
       category: "Backend",
       featured: false,
-      pdf: "/certificate/Coursera-React-Basic.pdf",
+      pdf: "/certificate/python-sena.pdf",
     },
   ];
 
