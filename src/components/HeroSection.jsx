@@ -30,6 +30,33 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [typedText, isDeleting, currentRole]);
 
+  const socials = [
+    {
+      href: "https://github.com/chechojgb/",
+      icon: "/images/logos/github.svg",
+      alt: "GitHub",
+      hover: "hover:border-gray-400/50",
+    },
+    {
+      href: "https://www.linkedin.com/in/sergio-ortiz-garzon-092051316/",
+      icon: "/images/logos/linkedin.svg",
+      alt: "LinkedIn",
+      hover: "hover:border-blue-400/50",
+    },
+    {
+      href: "https://wa.me/573209925728?text=¡Hola%20Sergio!%20Vi%20tu%20portafolio%20y%20me%20encantó%20tu%20trabajo.%20¿Podemos%20conversar%20sobre%20un%20proyecto?",
+      icon: "/images/logos/whatsapp.svg",
+      alt: "WhatsApp",
+      hover: "hover:border-green-400/50",
+    },
+    {
+      href: "mailto:sergioortiz.03@live.com",
+      icon: "/images/logos/gmail-icon.svg",
+      alt: "Correo",
+      hover: "hover:border-red-400/50",
+    },
+  ];
+
   return (
     <section
       className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8 z-20 pb-10 bg-[#020617] overflow-hidden"
@@ -78,9 +105,10 @@ export default function HeroSection() {
             Me enfoco en rendimiento, experiencia de usuario y código limpio.
           </p>
 
+          {/* Botones */}
           <div className="flex flex-col sm:flex-row gap-6">
             <a
-              href="/Hoja_de_Vida_oct- Sergio Ortiz.pdf"
+              href="/public/images/CV-Sergio_Ortiz_Garzon_FD.pdf"
               download
               className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
             >
@@ -106,7 +134,26 @@ export default function HeroSection() {
             </a>
           </div>
 
-          <div className="flex gap-8 mt-12" style={{ animationDelay: '0.5s' }}>
+          {/* Redes sociales */}
+          <div className="flex items-center gap-4 mt-8">
+            <span className="text-gray-500 text-sm">Encuéntrame en</span>
+            <div className="flex items-center gap-3">
+              {socials.map(({ href, icon, alt, hover }) => (
+                <a
+                  key={alt}
+                  href={href}
+                  target={href.startsWith("mailto") ? "_self" : "_blank"}
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ${hover}`}
+                >
+                  <img src={icon} alt={alt} className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="flex gap-8 mt-10">
             <div className="text-center group cursor-pointer">
               <div className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">1+</div>
               <div className="text-sm text-gray-400 group-hover:text-gray-300">Años Exp</div>
@@ -184,6 +231,7 @@ const sergio: Developer = {
         </div>
         <span className="text-gray-400 text-sm">Sobre mi</span>
       </div>
+
     </section>
   );
 }
