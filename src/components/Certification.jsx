@@ -19,7 +19,7 @@ export default function CertificationsSection() {
       url: "https://www.coursera.org/account/accomplishments/specialization/KZ2HNGDF0GO2",
       category: "Frontend",
       featured: true,
-      pdf: "/certificate/Coursera-Advance-React.pdf",
+      pdf: "/certificate/React-Meta.pdf",
     },
     {
       id: 2,
