@@ -108,7 +108,7 @@ export default function HeroSection() {
           {/* Botones */}
           <div className="flex flex-col sm:flex-row gap-6">
             <a
-              href="/public/certificate/CV-Sergio_Ortiz_Garzon_FD.pdf"
+              href="/certificate/CV-Sergio_Ortiz_Garzon_FD.pdf"
               download
               className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
             >
