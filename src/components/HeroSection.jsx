@@ -108,7 +108,7 @@ export default function HeroSection() {
           {/* Botones */}
           <div className="flex flex-col sm:flex-row gap-6">
             <a
-              href="/public/images/CV-Sergio_Ortiz_Garzon_FD.pdf"
+              href="/public/certificate/CV-Sergio_Ortiz_Garzon_FD.pdf"
               download
               className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
             >
@@ -136,17 +136,17 @@ export default function HeroSection() {
 
           {/* Redes sociales */}
           <div className="flex items-center gap-4 mt-8">
-            <span className="text-gray-500 text-sm">Encuéntrame en</span>
-            <div className="flex items-center gap-3">
+            <span className="text-gray-200 text-base">Encuéntrame en</span>
+            <div className="flex items-center gap-4">
               {socials.map(({ href, icon, alt, hover }) => (
                 <a
                   key={alt}
                   href={href}
                   target={href.startsWith("mailto") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
-                  className={`w-10 h-10 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ${hover}`}
+                  className={`w-14 h-14 rounded-xl bg-gray-800/50 border border-gray-700/50 flex items-center justify-center hover:bg-gray-700/50 transition-all duration-300 hover:scale-110 ${hover}`}
                 >
-                  <img src={icon} alt={alt} className="w-5 h-5" />
+                  <img src={icon} alt={alt} className="w-7 h-7" />
                 </a>
               ))}
             </div>
