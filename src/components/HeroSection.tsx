@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 // Definimos la interfaz para las propiedades que recibe el componente desde Welcome.tsx
 interface HeroSectionProps {
@@ -7,7 +6,6 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ activeRole }: HeroSectionProps) {
-  const navigate = useNavigate();
   const [typedText, setTypedText] = useState("");
 
   // Roles que rotan en el efecto máquina de escribir

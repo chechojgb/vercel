@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import  { useEffect, useRef } from "react";
 
 // Interfaz para la estructura de estilos dinámicos de las estrellas
 interface StarType {

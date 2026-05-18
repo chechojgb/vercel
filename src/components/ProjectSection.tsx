@@ -1,29 +1,10 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
-interface ProjectsSectionProps {
-  activeRole: "fullstack" | "frontend" | "backend";
-}
 
-interface Tag {
-  name: string;
-  class: string;
-  icon: string;
-}
 
-interface Project {
-  pageTitle: string;
-  image: string;
-  himagelg: string;
-  himagexl: string;
-  title: string;
-  description: string;
-  tags: Tag[];
-  github?: string;
-  route?: string;
-}
 
-export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
+export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   return (

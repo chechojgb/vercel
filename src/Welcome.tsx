@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import HeroSection from "./components/HeroSection";
 import AboutMe from "./components/AboutMe";
@@ -36,7 +35,7 @@ export default function Welcome() {
 
       <AboutMe activeRole={activeRole} />
       <TechStack activeRole={activeRole} />
-      <ProjectsSection activeRole={activeRole} />
+      <ProjectsSection />
 
       <CertificationsSection />
     </>

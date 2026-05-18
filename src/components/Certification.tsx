@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   ExternalLink,
   Download,
@@ -10,20 +10,6 @@ import {
   Info,
 } from "lucide-react";
 
-interface Certification {
-  id: number;
-  title: string;
-  issuer: string;
-  date: string;
-  credentialId: string;
-  level: string;
-  skills: string[];
-  image: string;
-  url: string;
-  category: "Frontend" | "Backend" | "DevOps";
-  featured?: boolean;
-  pdf: string;
-}
 
 export default function CertificationsSection() {
   const [selectedCert, setSelectedCert] = useState<number>(0);
