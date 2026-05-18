@@ -1,8 +1,30 @@
 import React, { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
-const ProjectsSection = () => {
-  const sectionRef = useRef(null);
+interface ProjectsSectionProps {
+  activeRole: 'fullstack' | 'frontend' | 'backend';
+}
+
+interface Tag {
+  name: string;
+  class: string;
+  icon: string;
+}
+
+interface Project {
+  pageTitle: string;
+  image: string;
+  himagelg: string;
+  himagexl: string;
+  title: string;
+  description: string;
+  tags: Tag[];
+  github?: string;
+  route?: string;
+}
+
+export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   return (
     <section
@@ -34,20 +56,6 @@ const ProjectsSection = () => {
 
         <div className="flex flex-col gap-20">
           <ProjectCard
-            pageTitle="App de aprendizaje social"
-            image="images/projects/aprendizaje-social.jpeg"
-            himagelg="70"
-            himagexl="70"
-            title="App de aprendizaje social — Reta a tus amigos"
-            description="Plataforma educativa donde los usuarios pueden retar a sus amigos a quizzes y competir en lecciones. Muestra progreso por usuario con barras de avance y cantidad de lecciones completadas. Aprender es mejor juntos."
-            tags={[
-              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
-              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
-              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
-            ]}
-          />
-
-          <ProjectCard
             pageTitle="Zallar"
             image="images/projects/zallar.jpeg"
             himagelg="70"
@@ -59,38 +67,8 @@ const ProjectsSection = () => {
               { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
               { name: "Vite", class: "bg-violet-500/20 text-violet-400 border border-violet-400/30", icon: "images/logos/vite.svg" },
             ]}
+            route="https://www.zallar.dev/"
           />
-
-          <ProjectCard
-            pageTitle="Magic — English for Kids"
-            image="images/projects/magic-kids.jpeg"
-            himagelg="70"
-            himagexl="70"
-            title="Magic — Inglés para niños con mundos 3D"
-            description="Plataforma de aprendizaje de inglés infantil con estética 3D colorida y personajes animados. Sustituye las flashcards tradicionales por mundos interactivos y juegos para hacer el aprendizaje entretenido."
-            tags={[
-              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
-              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
-              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
-            ]}
-          />
-          <ProjectCard
-            pageTitle="TrackerOS"
-            image="images/projects/trackerOS.png"
-            himagelg="70"
-            himagexl="70"
-            title="Tracker OS — Productividad local con privacidad"
-            description="Aplicación React + Python que analiza tus hábitos digitales de forma 100% local. Todo el procesamiento ocurre en tu dispositivo: sin servidores, sin telemetría. UI construida con React y TailwindCSS."
-            tags={[
-              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
-              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
-              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
-              { name: "Python", class: "bg-yellow-500/20 text-yellow-400 border border-yellow-400/30", icon: "images/logos/python.svg" },
-            ]}
-            github="https://github.com/chechojgb/tracker-front-react"
-            route="https://tracker-front-react.vercel.app"
-          />
-
           <ProjectCard
             pageTitle="NexoAgents"
             image="images/projects/nexoAgents.png"
@@ -122,6 +100,54 @@ const ProjectsSection = () => {
             github="https://github.com/chechojgb/AZZU"
             route="https://portafolio.laravel.cloud/dashboardBL"
           />
+
+          
+
+          <ProjectCard
+            pageTitle="Magic — English for Kids"
+            image="images/projects/magic-kids.jpeg"
+            himagelg="70"
+            himagexl="70"
+            title="Magic — Inglés para niños con mundos 3D"
+            description="Plataforma de aprendizaje de inglés infantil con estética 3D colorida y personajes animados. Sustituye las flashcards tradicionales por mundos interactivos y juegos para hacer el aprendizaje entretenido."
+            tags={[
+              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
+              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
+              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
+            ]}
+          />
+          
+          <ProjectCard
+            pageTitle="TrackerOS"
+            image="images/projects/trackerOS.png"
+            himagelg="70"
+            himagexl="70"
+            title="Tracker OS — Productividad local con privacidad"
+            description="Aplicación React + Python que analiza tus hábitos digitales de forma 100% local. Todo el procesamiento ocurre en tu dispositivo: sin servidores, sin telemetría. UI construida con React y TailwindCSS."
+            tags={[
+              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
+              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
+              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
+              { name: "Python", class: "bg-yellow-500/20 text-yellow-400 border border-yellow-400/30", icon: "images/logos/python.svg" },
+            ]}
+            github="https://github.com/chechojgb/tracker-front-react"
+            route="https://tracker-front-react.vercel.app"
+          />
+
+          
+          <ProjectCard
+            pageTitle="App de aprendizaje social"
+            image="images/projects/aprendizaje-social.jpeg"
+            himagelg="70"
+            himagexl="70"
+            title="App de aprendizaje social — Reta a tus amigos"
+            description="Plataforma educativa donde los usuarios pueden retar a sus amigos a quizzes y competir en lecciones. Muestra progreso por usuario con barras de avance y cantidad de lecciones completadas. Aprender es mejor juntos."
+            tags={[
+              { name: "React", class: "bg-blue-500/20 text-blue-400 border border-blue-400/30", icon: "images/logos/react.png" },
+              { name: "TypeScript", class: "bg-blue-700/20 text-blue-300 border border-blue-300/30", icon: "images/logos/typescript.svg" },
+              { name: "TailwindCSS", class: "bg-cyan-500/20 text-cyan-400 border border-cyan-400/30", icon: "images/logos/tailwind.png" },
+            ]}
+          />
         </div>
 
         <div className="text-center mt-16">
@@ -144,4 +170,3 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection;

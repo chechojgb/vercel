@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import { ExternalLink, Download, CheckCircle2, Star, Award, Eye, X, Info } from "lucide-react";
 
+interface Certification {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId: string;
+  level: string;
+  skills: string[];
+  image: string;
+  url: string;
+  category: 'Frontend' | 'Backend' | 'DevOps';
+  featured?: boolean;
+  pdf: string;
+}
+
 export default function CertificationsSection() {
-  const [selectedCert, setSelectedCert] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imageErrors, setImageErrors] = useState({});
+  const [selectedCert, setSelectedCert] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   const certifications = [
     {
@@ -92,10 +108,10 @@ export default function CertificationsSection() {
     },
   ];
 
-  const handleImageError = (certId) =>
+  const handleImageError = (certId: number) =>
     setImageErrors((prev) => ({ ...prev, [certId]: true }));
 
-  const openModal = (index) => {
+  const openModal = (index: number) => {
     setSelectedCert(index);
     setIsModalOpen(true);
   };
@@ -294,10 +310,7 @@ export default function CertificationsSection() {
                       src={certifications[selectedCert].image}
                       alt={`Certificado ${certifications[selectedCert].title}`}
                       className="max-w-full max-h-[500px] rounded-lg object-contain"
-                      onError={(e) => {
-                        handleImageError(certifications[selectedCert].id);
-                        e.target.style.display = "none";
-                      }}
+                      onError={() => handleImageError(certifications[selectedCert].id)}
                     />
                   ) : (
                     <div className="aspect-video w-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-gray-700/50 flex items-center justify-center">

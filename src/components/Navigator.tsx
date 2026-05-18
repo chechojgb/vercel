@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Home, User, Code, Briefcase, Award, Menu } from "lucide-react";
+import { Home, User, Code, Briefcase, Award, Menu, LucideIcon } from "lucide-react";
+
+// Definimos la interfaz para los elementos del menú
+interface MenuItem {
+  id: string;
+  label: string;
+  icon: LucideIcon; // Usamos el tipo nativo de Lucide para los íconos
+}
 
 export default function NavigationBar() {
-  const [activeSection, setActiveSection] = useState("inicio");
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("inicio");
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     { id: "inicio", label: "Inicio", icon: Home },
     { id: "about", label: "Sobre Mí", icon: User },
     { id: "tech", label: "Tecnologías", icon: Code },
@@ -19,6 +26,7 @@ export default function NavigationBar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
 
+      // Mapeamos los elementos capturando su tipo exacto HTMLElement o null
       const sections = menuItems.map(item => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 100;
 
@@ -38,7 +46,7 @@ export default function NavigationBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;

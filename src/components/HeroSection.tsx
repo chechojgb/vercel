@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function HeroSection() {
+// Definimos la interfaz para las propiedades que recibe el componente desde Welcome.tsx
+interface HeroSectionProps {
+  activeRole: 'fullstack' | 'frontend' | 'backend';
+}
+
+export default function HeroSection({ activeRole }: HeroSectionProps) {
+  const navigate = useNavigate();
   const [typedText, setTypedText] = useState('');
+  
+  // Roles que rotan en el efecto máquina de escribir
   const roles = [
+    "Full Stack Developer",
+    "Backend Engineer",
     "Frontend Developer",
-    "React Specialist",
-    "UI/UX Craftsman",
-    "TypeScript Lover",
-    "Component Architect",
+    "API Architect",
+    "Database Designer"
   ];
+  
   const [currentRole, setCurrentRole] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -28,7 +38,7 @@ export default function HeroSection() {
     };
     const timer = setTimeout(typeWriter, isDeleting ? 50 : 100);
     return () => clearTimeout(timer);
-  }, [typedText, isDeleting, currentRole]);
+  }, [typedText, isDeleting, currentRole, roles]);
 
   const socials = [
     {
@@ -75,12 +85,7 @@ export default function HeroSection() {
         {/* Left column */}
         <div className="w-full lg:w-1/2 mb-12 lg:mb-0 relative">
 
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-8 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer group">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse group-hover:bg-green-400 transition-colors"></div>
-            <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors">
-              Disponible para proyectos
-            </span>
-          </div>
+        
 
           <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-8">
             <span className="text-gray-300 block mb-2">Hola,</span>
@@ -98,17 +103,25 @@ export default function HeroSection() {
           </div>
 
           <p className="text-lg text-gray-300/90 leading-relaxed mb-12 max-w-xl hover:text-white transition-colors duration-300">
-            Construyo interfaces{" "}
-            <span className="text-cyan-400 font-semibold">modernas y accesibles</span> con{" "}
-            <span className="text-blue-400 font-semibold">React</span> y{" "}
-            <span className="text-violet-400 font-semibold">TypeScript</span>.
-            Me enfoco en rendimiento, experiencia de usuario y código limpio.
+            {activeRole === 'frontend' ? (
+              <>
+                Construyo interfaces <span className="text-cyan-400 font-semibold">modernas y accesibles</span> con <span className="text-blue-400 font-semibold">React</span> y <span className="text-violet-400 font-semibold">TypeScript</span>. Me enfoco en rendimiento, experiencia de usuario y código limpio.
+              </>
+            ) : activeRole === 'backend' ? (
+              <>
+                Diseño arquitecturas de servidor <span className="text-cyan-400 font-semibold">robustas y escalables</span>. Especializado en la creación de <span className="text-blue-400 font-semibold">APIs seguras</span>, optimización de consultas y modelado de datos.
+              </>
+            ) : (
+              <>
+                Construyo aplicaciones web completas de <span className="text-cyan-400 font-semibold">extremo a extremo</span>. Conecto lógica de servidor eficiente con interfaces de usuario interactivas, modernas y optimizadas.
+              </>
+            )}
           </p>
 
           {/* Botones */}
           <div className="flex flex-col sm:flex-row gap-6">
             <a
-              href="/certificate/CV-Sergio_Ortiz_Garzon_FD.pdf"
+              href={`/certificate/CV-Sergio_Ortiz_Garzon_${activeRole === 'frontend' ? 'FE' : activeRole === 'backend' ? 'BE' : 'FS'}.pdf`}
               download
               className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25"
             >
@@ -152,15 +165,19 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Stats reactivos al rol */}
           <div className="flex gap-8 mt-10">
             <div className="text-center group cursor-pointer">
               <div className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">1+</div>
               <div className="text-sm text-gray-400 group-hover:text-gray-300">Años Exp</div>
             </div>
             <div className="text-center group cursor-pointer">
-              <div className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">10+</div>
-              <div className="text-sm text-gray-400 group-hover:text-gray-300">Componentes</div>
+              <div className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                {activeRole === 'frontend' ? '10+' : activeRole === 'backend' ? '5+' : '15+'}
+              </div>
+              <div className="text-sm text-gray-400 group-hover:text-gray-300">
+                {activeRole === 'frontend' ? 'Componentes' : activeRole === 'backend' ? 'APIs creadas' : 'Proyectos'}
+              </div>
             </div>
             <div className="text-center group cursor-pointer">
               <div className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">100%</div>
@@ -169,25 +186,43 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right column — code block */}
+        {/* Right column — Code block */}
         <div className="w-full lg:w-1/2 flex flex-col items-center justify-center gap-0 mt-12 lg:mt-20 z-40">
           <div className="relative w-full bg-[#091121] rounded-2xl shadow-2xl max-w-2xl hover:shadow-blue-500/10 hover:scale-105 transition-all duration-500 group">
 
             <div className="flex items-center justify-between bg-gray-800 px-5 py-3 rounded-t-2xl">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
+                <div className="w-3 h-3 bg-red-500 rounded-full cursor-pointer"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full cursor-pointer"></div>
               </div>
               <span className="text-sm text-gray-400 flex items-center gap-2">
                 <i className="fas fa-code text-blue-400"></i>
-                <span className="group-hover:text-blue-400 transition-colors">sergio_ortiz.tsx</span>
+                <span className="group-hover:text-blue-400 transition-colors">
+                  {activeRole === 'backend' ? 'sergio_backend.py' : 'sergio_dev.tsx'}
+                </span>
               </span>
               <div className="w-12"></div>
             </div>
 
-            <pre className="p-8 md:p-10 text-green-400 text-[0.9rem] md:text-base leading-relaxed whitespace-pre-wrap font-mono">
-{`interface Developer {
+            <pre className="p-8 md:p-10 text-green-400 text-[0.85rem] md:text-base leading-relaxed whitespace-pre-wrap font-mono">
+              {activeRole === 'fullstack' && `interface FullStackDeveloper {
+  name: string;
+  architecture: string;
+  frontend: string[];
+  backend: string[];
+  databases: string[];
+}
+
+const sergio: FullStackDeveloper = {
+  name: "Sergio Ortiz",
+  architecture: "Monoliths & REST APIs",
+  frontend: ["React", "Next.js", "TailwindCSS"],
+  backend: ["Laravel", "FastAPI", "Python"],
+  databases: ["PostgreSQL", "MySQL"]
+};`}
+
+              {activeRole === 'frontend' && `interface FrontendDeveloper {
   name: string;
   role: string;
   stack: {
@@ -198,9 +233,9 @@ export default function HeroSection() {
   passion: string;
 }
 
-const sergio: Developer = {
+const sergio: FrontendDeveloper = {
   name: "Sergio Ortiz",
-  role: "Frontend Developer",
+  role: "Frontend Specialist",
   stack: {
     core: ["React", "TypeScript", "Next.js"],
     styling: ["TailwindCSS", "Framer Motion"],
@@ -208,6 +243,20 @@ const sergio: Developer = {
   },
   passion: "UI hermosa + código limpio ✨"
 };`}
+
+              {activeRole === 'backend' && `class BackendDeveloper:
+    def __init__(self):
+        self.name = "Sergio Ortiz"
+        self.frameworks = ["Laravel", "FastAPI"]
+        self.databases = ["PostgreSQL", "MySQL"]
+        self.tools = ["Docker", "Git", "Postman"]
+        
+    def core_skills(self):
+        return [
+            "Diseño de APIs RESTful",
+            "Autenticación Segura (JWT/Sanctum)",
+            "Modelado de datos & ORMs"
+        ]`}
             </pre>
 
             <div className="absolute -bottom-12 -right-4 z-50 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
