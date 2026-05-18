@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
-// Definimos los tipos admitidos basados en tu enrutador
 interface AboutMeProps {
   activeRole: "fullstack" | "frontend" | "backend";
 }
 
 export default function AboutMe({ activeRole }: AboutMeProps) {
-  const [activeCard, setActiveCard] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -174,7 +172,7 @@ export default function AboutMe({ activeRole }: AboutMeProps) {
                   <span className="font-semibold text-green-400">
                     el detalle visual
                   </span>
-                  , la arquitectura limpia de componentes y la experiencia de
+                  , la architecture limpia de componentes y la experiencia de
                   usuario. Diseño pensando en quien usa el producto: interfaces
                   intuitivas, responsivas y con animaciones que aporten valor,
                   no ruido.
@@ -299,11 +297,7 @@ export default function AboutMe({ activeRole }: AboutMeProps) {
             style={{ animationDelay: "0.6s" }}
           >
             {/* Tarjeta 1 */}
-            <div
-              className="group cursor-pointer rounded-xl border border-cyan-400/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-cyan-500/10"
-              onMouseEnter={() => setActiveCard("que-hago")}
-              onMouseLeave={() => setActiveCard(null)}
-            >
+            <div className="group cursor-pointer rounded-xl border border-cyan-400/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-cyan-500/10">
               <h3 className="mb-3 flex items-center gap-2 font-bold text-cyan-400 transition-colors group-hover:text-cyan-300">
                 <i className="fas fa-layer-group group-hover:animate-bounce"></i>
                 {activeRole === "backend"
@@ -326,11 +320,7 @@ export default function AboutMe({ activeRole }: AboutMeProps) {
             </div>
 
             {/* Tarjeta 2 */}
-            <div
-              className="group cursor-pointer rounded-xl border border-violet-400/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-violet-500/10"
-              onMouseEnter={() => setActiveCard("como-hago")}
-              onMouseLeave={() => setActiveCard(null)}
-            >
+            <div className="group cursor-pointer rounded-xl border border-violet-400/10 bg-white/5 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-violet-500/10">
               <h3 className="mb-3 flex items-center gap-2 font-bold text-violet-400 transition-colors group-hover:text-violet-300">
                 <i className="fas fa-cogs group-hover:animate-spin"></i>
                 ¿Cómo lo hago?

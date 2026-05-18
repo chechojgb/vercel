@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 // Interfaces para tipar la estructura de datos
 interface Tag {
