@@ -14,7 +14,7 @@
   animation: shoot-enhanced 2.5s ease-out forwards;
   opacity: 0;
   z-index: 45;
-  
+
   /* Optimizaciones */
   will-change: transform, opacity;
   transform: translateZ(0);
@@ -22,19 +22,28 @@
 }
 
 .shooting-star::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: -50px;
   width: 60px;
   height: 1px;
-  background: var(--trail-gradient, linear-gradient(90deg, transparent 0%, rgba(96, 165, 250, 0.8) 30%, rgba(34, 211, 238, 0.4) 70%, transparent 100%));
+  background: var(
+    --trail-gradient,
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(96, 165, 250, 0.8) 30%,
+      rgba(34, 211, 238, 0.4) 70%,
+      transparent 100%
+    )
+  );
   filter: blur(0.5px);
   transform: translateY(-50%);
 }
 
 .shooting-star::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -60,10 +69,8 @@
 /* === ANIMACIONES MEJORADAS === */
 @keyframes shoot-enhanced {
   0% {
-    transform: 
-      translateX(calc(var(--startX) * 1vw)) 
-      translateY(calc(var(--startY) * 1vh))
-      rotate(calc(var(--angle) * 1deg));
+    transform: translateX(calc(var(--startX) * 1vw))
+      translateY(calc(var(--startY) * 1vh)) rotate(calc(var(--angle) * 1deg));
     opacity: 0;
     width: 1px;
     filter: blur(0.3px);
@@ -81,8 +88,7 @@
     opacity: 0.6;
   }
   100% {
-    transform: 
-      translateX(calc((var(--startX) + var(--distanceX)) * 1vw)) 
+    transform: translateX(calc((var(--startX) + var(--distanceX)) * 1vw))
       translateY(calc((var(--startY) + var(--distanceY)) * 1vh))
       rotate(calc((var(--angle) + 15) * 1deg));
     opacity: 0;
@@ -93,8 +99,7 @@
 
 @keyframes spark-fade {
   0% {
-    transform: 
-      translateX(calc(var(--spark-startX) * 1vw)) 
+    transform: translateX(calc(var(--spark-startX) * 1vw))
       translateY(calc(var(--spark-startY) * 1vh))
       rotate(calc(var(--spark-angle) * 1deg));
     opacity: 0;
@@ -103,9 +108,12 @@
     opacity: 0.8;
   }
   100% {
-    transform: 
-      translateX(calc((var(--spark-startX) + var(--spark-distance)) * 1vw)) 
-      translateY(calc((var(--spark-startY) + var(--spark-distance) * 0.3) * 1vh))
+    transform: translateX(
+        calc((var(--spark-startX) + var(--spark-distance)) * 1vw)
+      )
+      translateY(
+        calc((var(--spark-startY) + var(--spark-distance) * 0.3) * 1vh)
+      )
       rotate(calc((var(--spark-angle) + 45) * 1deg));
     opacity: 0;
   }
@@ -128,7 +136,7 @@
   background: #ffffff;
   border-radius: 50%;
   animation: twinkle-optimized 5s ease-in-out infinite;
-  box-shadow: 
+  box-shadow:
     0 0 4px 1px rgba(96, 165, 250, 0.4),
     0 0 8px 2px rgba(34, 211, 238, 0.2);
   z-index: 40;

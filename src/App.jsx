@@ -5,10 +5,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
         <Route path="/" element={<Navigate to="/FullStack" replace />} />
-        
-        
+
         <Route path="/:role" element={<Welcome />} />
       </Routes>
     </BrowserRouter>

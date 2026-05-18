@@ -33,58 +33,76 @@ export default function ProjectCard({
   const [isHovered, setIsHovered] = useState(false);
 
   // Mapeo seguro de alturas para evitar interpolación de strings rota en el render de Tailwind
-  const getLgHeightClass = (h: string) => (h === "70" ? "lg:h-70" : "lg:h-auto");
-  const getXlHeightClass = (h: string) => (h === "70" ? "xl:h-70" : "xl:h-auto");
+  const getLgHeightClass = (h: string) =>
+    h === "70" ? "lg:h-70" : "lg:h-auto";
+  const getXlHeightClass = (h: string) =>
+    h === "70" ? "xl:h-70" : "xl:h-auto";
 
   return (
-    <article 
-      className="flex flex-col md:flex-row gap-8 group relative"
+    <article
+      className="group relative flex flex-col gap-8 md:flex-row"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Efecto de glow al hacer hover */}
-      <div className={`absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl blur-xl transition-opacity duration-500 ${
-        isHovered ? 'opacity-100' : 'opacity-0'
-      }`}></div>
+      <div
+        className={`absolute -inset-4 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-xl transition-opacity duration-500 ${
+          isHovered ? "opacity-100" : "opacity-0"
+        }`}
+      ></div>
 
       {/* Imagen + ventana navegador */}
-      <div className="w-full md:w-1/2 relative z-30">
-        <div className="relative w-full h-64 md:h-96 lg:h-104 overflow-hidden rounded-xl shadow-2xl group-hover:scale-[1.02] transition-all duration-500 border border-gray-700/50 bg-gradient-to-br from-gray-900 to-gray-800 sm:h-104 min-h-[310px]">
-          
+      <div className="relative z-30 w-full md:w-1/2">
+        <div className="relative h-64 min-h-[310px] w-full overflow-hidden rounded-xl border border-gray-700/50 bg-gradient-to-br from-gray-900 to-gray-800 shadow-2xl transition-all duration-500 group-hover:scale-[1.02] sm:h-104 md:h-96 lg:h-104">
           {/* Efecto de reflexión en el escritorio */}
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent z-10"></div>
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
 
           {/* Iconos de escritorio al fondo */}
-          <div className="absolute top-4 left-1 flex flex-col gap-5 text-center text-sm text-gray-300 font-semibold z-0">
+          <div className="absolute top-4 left-1 z-0 flex flex-col gap-5 text-center text-sm font-semibold text-gray-300">
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src="/images/desk/carpeta-mac-48.png" alt="Files-mac" className="w-12 h-12" />
+              <img
+                src="/images/desk/carpeta-mac-48.png"
+                alt="Files-mac"
+                className="h-12 w-12"
+              />
               <span>Proyectos</span>
             </div>
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src="/images/desk/notes_icon.svg" alt="Notes-mac" className="w-12 h-12" />
+              <img
+                src="/images/desk/notes_icon.svg"
+                alt="Notes-mac"
+                className="h-12 w-12"
+              />
               <span>Notas</span>
             </div>
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src="/images/desk/discord.png" alt="Discord" className="w-12 h-12" />
+              <img
+                src="/images/desk/discord.png"
+                alt="Discord"
+                className="h-12 w-12"
+              />
               <span>Discord</span>
             </div>
           </div>
 
           {/* Contenido ventana */}
-          <div className="px-8 py-8 relative z-20 p-30">
-            <div className="overflow-hidden rounded-xl bg-gray-800 shadow-2xl w-full max-w-3xl mx-auto border border-gray-600/50">
-              
+          <div className="relative z-20 p-30 px-8 py-8">
+            <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-xl border border-gray-600/50 bg-gray-800 shadow-2xl">
               {/* Barra navegador mejorada */}
-              <div className="flex items-center bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-3 border-b border-gray-600">
-                <div className="flex space-x-2 mr-4">
-                  <div className="w-3 h-3 bg-red-500 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full hover:scale-110 transition-transform cursor-pointer"></div>
+              <div className="flex items-center border-b border-gray-600 bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-3">
+                <div className="mr-4 flex space-x-2">
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-transform hover:scale-110"></div>
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-yellow-400 transition-transform hover:scale-110"></div>
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-transform hover:scale-110"></div>
                 </div>
-                <div className="bg-gray-900 px-4 py-2 rounded-lg flex items-center gap-2 border border-gray-600 flex-1">
-                  <i className="fas fa-lock text-green-400 text-xs"></i>
-                  <span className="text-sm text-gray-300 truncate">{pageTitle}</span>
-                  <span className="text-gray-500 ml-auto text-sm hover:text-white transition-colors cursor-pointer">×</span>
+                <div className="flex flex-1 items-center gap-2 rounded-lg border border-gray-600 bg-gray-900 px-4 py-2">
+                  <i className="fas fa-lock text-xs text-green-400"></i>
+                  <span className="truncate text-sm text-gray-300">
+                    {pageTitle}
+                  </span>
+                  <span className="ml-auto cursor-pointer text-sm text-gray-500 transition-colors hover:text-white">
+                    ×
+                  </span>
                 </div>
               </div>
 
@@ -93,50 +111,76 @@ export default function ProjectCard({
                 <img
                   src={`/${image}`}
                   alt={title}
-                  className={`w-full h-40 md:h-70 max-h-72 object-cover transition duration-700 group-hover:scale-105 ${getLgHeightClass(himagelg)} ${getXlHeightClass(himagexl)}`}
+                  className={`h-40 max-h-72 w-full object-cover transition duration-700 group-hover:scale-105 md:h-70 ${getLgHeightClass(himagelg)} ${getXlHeightClass(himagexl)}`}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               </div>
             </div>
           </div>
 
           {/* Barra de tareas mejorada */}
-          <div className="absolute bottom-0 w-full h-14 bg-gradient-to-t from-gray-800 to-gray-900 border-t border-gray-600/50"></div>
-          <div className="absolute bottom-2 left-0 w-full flex justify-center items-center px-4 gap-6 z-30">
-            <div className="flex items-center gap-6 bg-gray-800/80 backdrop-blur-sm px-6 py-2 rounded-xl border border-gray-600/50">
-              <img src="/images/desk/spotify.svg" alt="Spotify" className="w-6 h-6 hover:scale-110 transition-transform" />
+          <div className="absolute bottom-0 h-14 w-full border-t border-gray-600/50 bg-gradient-to-t from-gray-800 to-gray-900"></div>
+          <div className="absolute bottom-2 left-0 z-30 flex w-full items-center justify-center gap-6 px-4">
+            <div className="flex items-center gap-6 rounded-xl border border-gray-600/50 bg-gray-800/80 px-6 py-2 backdrop-blur-sm">
+              <img
+                src="/images/desk/spotify.svg"
+                alt="Spotify"
+                className="h-6 w-6 transition-transform hover:scale-110"
+              />
               <div className="relative">
-                <img src="/images/desk/safari.svg" alt="Safari" className="w-8 h-8 bg-blue-500/20 rounded-lg p-1 hover:scale-110 transition-transform" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <img
+                  src="/images/desk/safari.svg"
+                  alt="Safari"
+                  className="h-8 w-8 rounded-lg bg-blue-500/20 p-1 transition-transform hover:scale-110"
+                />
+                <div className="absolute -top-1 -right-1 h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
               </div>
-              <img src="/images/desk/visual-studio-code.svg" alt="VSCode" className="w-6 h-6 hover:scale-110 transition-transform" />
-              <img src="/images/desk/app-store.svg" alt="App Store" className="w-6 h-6 hover:scale-110 transition-transform" />
-              <img src="/images/desk/gmail-icon.svg" alt="Gmail" className="w-6 h-6 hover:scale-110 transition-transform" />
+              <img
+                src="/images/desk/visual-studio-code.svg"
+                alt="VSCode"
+                className="h-6 w-6 transition-transform hover:scale-110"
+              />
+              <img
+                src="/images/desk/app-store.svg"
+                alt="App Store"
+                className="h-6 w-6 transition-transform hover:scale-110"
+              />
+              <img
+                src="/images/desk/gmail-icon.svg"
+                alt="Gmail"
+                className="h-6 w-6 transition-transform hover:scale-110"
+              />
             </div>
           </div>
         </div>
       </div>
 
       {/* Info del proyecto mejorada */}
-      <div className="md:w-1/2 md:max-w-lg relative z-10">
-        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+      <div className="relative z-10 md:w-1/2 md:max-w-lg">
+        <h3 className="mb-3 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-cyan-400">
           {title}
         </h3>
-        
-        <ul className="flex flex-wrap mb-4 gap-2 pl-0">
+
+        <ul className="mb-4 flex flex-wrap gap-2 pl-0">
           {tags.map((tag, i) => (
             <li
               key={i}
-              className={`flex items-center gap-2 text-xs px-3 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 ${tag.class}`}
+              className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs backdrop-blur-sm transition-all duration-300 hover:scale-105 ${tag.class}`}
             >
-              {tag.icon && <img src={`/${tag.icon}`} alt={tag.name} className="w-4 h-4 object-contain" />}
+              {tag.icon && (
+                <img
+                  src={`/${tag.icon}`}
+                  alt={tag.name}
+                  className="h-4 w-4 object-contain"
+                />
+              )}
               {tag.name}
             </li>
           ))}
         </ul>
 
-        <p className="text-gray-400 leading-relaxed mb-6 group-hover:text-gray-300 transition-colors duration-300">
+        <p className="mb-6 leading-relaxed text-gray-400 transition-colors duration-300 group-hover:text-gray-300">
           {description}
         </p>
 
@@ -146,9 +190,13 @@ export default function ProjectCard({
               href={github}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/80 backdrop-blur-sm border border-gray-600/50 text-gray-300 hover:bg-gray-700 hover:text-white hover:scale-105 transition-all duration-300"
+              className="flex items-center gap-2 rounded-lg border border-gray-600/50 bg-gray-800/80 px-4 py-2 text-gray-300 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-gray-700 hover:text-white"
             >
-              <img src="/images/logos/github.svg" alt="Github" className="w-5 h-5" /> 
+              <img
+                src="/images/logos/github.svg"
+                alt="Github"
+                className="h-5 w-5"
+              />
               <span>Código</span>
             </a>
           )}
@@ -157,10 +205,10 @@ export default function ProjectCard({
               href={route}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white font-semibold overflow-hidden group/btn transition-all duration-300 hover:scale-105"
+              className="group/btn relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-4 py-2 font-semibold text-white transition-all duration-300 hover:scale-105"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 animate-gradient-x"></span>
-              <span className="absolute inset-0 bg-black opacity-0 group-hover/btn:opacity-20 transition-opacity duration-300"></span> 
+              <span className="animate-gradient-x absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500"></span>
+              <span className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover/btn:opacity-20"></span>
               <span className="relative z-10 flex items-center gap-2">
                 <i className="fas fa-external-link-alt"></i>
                 <span>Ver Proyecto</span>
@@ -170,7 +218,7 @@ export default function ProjectCard({
         </div>
 
         {/* Indicador de interacción */}
-        <div className="flex items-center gap-2 mt-4 text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="mt-4 flex items-center gap-2 text-sm text-gray-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <i className="fas fa-mouse-pointer text-cyan-400"></i>
           <span>Haz click para explorar</span>
         </div>

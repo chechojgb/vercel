@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { ExternalLink, Download, CheckCircle2, Star, Award, Eye, X, Info } from "lucide-react";
+import {
+  ExternalLink,
+  Download,
+  CheckCircle2,
+  Star,
+  Award,
+  Eye,
+  X,
+  Info,
+} from "lucide-react";
 
 interface Certification {
   id: number;
@@ -11,7 +20,7 @@ interface Certification {
   skills: string[];
   image: string;
   url: string;
-  category: 'Frontend' | 'Backend' | 'DevOps';
+  category: "Frontend" | "Backend" | "DevOps";
   featured?: boolean;
   pdf: string;
 }
@@ -137,48 +146,51 @@ export default function CertificationsSection() {
   return (
     <section
       id="certificaciones"
-      className="py-20 bg-gradient-to-b from-[#020617] to-[#0a1126] relative overflow-hidden"
+      className="relative overflow-hidden bg-gradient-to-b from-[#020617] to-[#0a1126] py-20"
     >
       {/* Decorative blurs */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 -right-20 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-20 -left-20 h-72 w-72 animate-pulse rounded-full bg-cyan-500/5 blur-3xl"></div>
+        <div
+          className="absolute -right-20 bottom-20 h-72 w-72 animate-pulse rounded-full bg-violet-500/5 blur-3xl"
+          style={{ animationDelay: "3s" }}
+        ></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer group">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse group-hover:bg-green-400 transition-colors"></div>
-            <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors">
+        <div className="mb-16 text-center">
+          <div className="group mb-6 inline-flex cursor-pointer items-center gap-2 rounded-full border border-gray-700/50 bg-gray-800/50 px-4 py-2 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50">
+            <div className="h-2 w-2 animate-pulse rounded-full bg-cyan-400 transition-colors group-hover:bg-green-400"></div>
+            <span className="text-sm font-medium text-gray-300 transition-colors group-hover:text-white">
               Credenciales Verificadas
             </span>
           </div>
 
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
+          <h2 className="mb-6 text-4xl font-bold text-white lg:text-6xl">
             Mis{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Certificados
             </span>
           </h2>
 
-          <p className="text-lg text-gray-300/80 max-w-2xl mx-auto leading-relaxed">
-            Formación continua en React, frontend moderno y herramientas del ecosistema web
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-300/80">
+            Formación continua en React, frontend moderno y herramientas del
+            ecosistema web
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
             <div
               key={cert.id}
-              className="group relative bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden hover:border-cyan-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/10"
+              className="group relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-800/30 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-cyan-400/30 hover:shadow-2xl hover:shadow-cyan-500/10"
             >
               {cert.featured && (
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 text-amber-300">
-                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/30 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-3 py-1 text-xs font-medium text-amber-300">
+                    <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                     Destacado
                   </span>
                 </div>
@@ -186,30 +198,32 @@ export default function CertificationsSection() {
 
               {/* Cert image */}
               <div
-                className="relative aspect-video bg-gray-900 cursor-pointer overflow-hidden"
+                className="relative aspect-video cursor-pointer overflow-hidden bg-gray-900"
                 onClick={() => openModal(index)}
               >
                 {!imageErrors[cert.id] ? (
                   <img
                     src={cert.image}
                     alt={`Certificado ${cert.title}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     onError={() => handleImageError(cert.id)}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
-                    <div className="text-center p-8">
-                      <Award className="w-16 h-16 text-cyan-400/50 mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto" />
-                      <p className="text-gray-400 text-sm">{cert.title}</p>
-                      <p className="text-gray-500 text-xs mt-2">Click para ver</p>
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
+                    <div className="p-8 text-center">
+                      <Award className="mx-auto mb-4 h-16 w-16 text-cyan-400/50 transition-transform duration-300 group-hover:scale-110" />
+                      <p className="text-sm text-gray-400">{cert.title}</p>
+                      <p className="mt-2 text-xs text-gray-500">
+                        Click para ver
+                      </p>
                     </div>
                   </div>
                 )}
 
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex items-center gap-2 text-white font-medium">
-                    <Eye className="w-5 h-5" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="flex items-center gap-2 font-medium text-white">
+                    <Eye className="h-5 w-5" />
                     Ver certificado
                   </div>
                 </div>
@@ -217,36 +231,39 @@ export default function CertificationsSection() {
 
               {/* Info */}
               <div className="p-5">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-white font-semibold text-sm leading-tight flex-1 pr-2">
+                <div className="mb-2 flex items-start justify-between">
+                  <h3 className="flex-1 pr-2 text-sm leading-tight font-semibold text-white">
                     {cert.title}
                   </h3>
-                  <span className="px-2 py-1 rounded-full text-xs bg-cyan-500/20 text-cyan-400 border border-cyan-400/20 shrink-0">
+                  <span className="shrink-0 rounded-full border border-cyan-400/20 bg-cyan-500/20 px-2 py-1 text-xs text-cyan-400">
                     {cert.category}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
+                <div className="mb-3 flex items-center gap-4 text-xs text-gray-400">
                   <span className="flex items-center gap-1">
-                    <Award className="w-3 h-3" />
+                    <Award className="h-3 w-3" />
                     {cert.issuer}
                   </span>
                   <span>{cert.date}</span>
                   <span className="text-amber-400">{cert.level}</span>
                 </div>
 
-                <p className="text-gray-500 font-mono text-xs mb-3 truncate">
+                <p className="mb-3 truncate font-mono text-xs text-gray-500">
                   #{cert.credentialId}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="mb-4 flex flex-wrap gap-1.5">
                   {cert.skills.slice(0, 3).map((skill, i) => (
-                    <span key={i} className="px-2 py-1 rounded text-xs bg-gray-700/50 text-gray-300 border border-gray-600/50">
+                    <span
+                      key={i}
+                      className="rounded border border-gray-600/50 bg-gray-700/50 px-2 py-1 text-xs text-gray-300"
+                    >
                       {skill}
                     </span>
                   ))}
                   {cert.skills.length > 3 && (
-                    <span className="px-2 py-1 rounded text-xs bg-gray-700/50 text-gray-400 border border-gray-600/50">
+                    <span className="rounded border border-gray-600/50 bg-gray-700/50 px-2 py-1 text-xs text-gray-400">
                       +{cert.skills.length - 3}
                     </span>
                   )}
@@ -255,18 +272,18 @@ export default function CertificationsSection() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => openModal(index)}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-700/50 hover:bg-cyan-500/20 border border-gray-600/50 hover:border-cyan-400/30 text-gray-300 hover:text-cyan-400 py-2 px-3 rounded-lg text-sm transition-all duration-300 cursor-pointer"
+                    className="inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-600/50 bg-gray-700/50 px-3 py-2 text-sm text-gray-300 transition-all duration-300 hover:border-cyan-400/30 hover:bg-cyan-500/20 hover:text-cyan-400"
                   >
-                    <Eye className="w-4 h-4" />
+                    <Eye className="h-4 w-4" />
                     Ver
                   </button>
                   <a
                     href={cert.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-gray-700/50 hover:bg-green-500/20 border border-gray-600/50 hover:border-green-400/30 text-gray-300 hover:text-green-400 py-2 px-3 rounded-lg text-sm transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-600/50 bg-gray-700/50 px-3 py-2 text-sm text-gray-300 transition-all duration-300 hover:border-green-400/30 hover:bg-green-500/20 hover:text-green-400"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -278,66 +295,93 @@ export default function CertificationsSection() {
       {/* Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="bg-gray-800 rounded-2xl border border-gray-700/50 max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            className="max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-800"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between bg-gray-900 px-6 py-4 border-b border-gray-700/50">
+            <div className="flex items-center justify-between border-b border-gray-700/50 bg-gray-900 px-6 py-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-500"></div>
                 </div>
-                <span className="text-gray-300 font-medium">{certifications[selectedCert].title}</span>
+                <span className="font-medium text-gray-300">
+                  {certifications[selectedCert].title}
+                </span>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700/50 rounded-lg"
+                className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-700/50 hover:text-white"
               >
-                <X className="w-5 h-5" />
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="p-6 overflow-auto max-h-[calc(90vh-80px)]">
-              <div className="bg-gray-900 rounded-xl border border-gray-700/50 p-4 mb-6">
+            <div className="max-h-[calc(90vh-80px)] overflow-auto p-6">
+              <div className="mb-6 rounded-xl border border-gray-700/50 bg-gray-900 p-4">
                 <div className="flex justify-center">
                   {!imageErrors[certifications[selectedCert].id] ? (
                     <img
                       src={certifications[selectedCert].image}
                       alt={`Certificado ${certifications[selectedCert].title}`}
-                      className="max-w-full max-h-[500px] rounded-lg object-contain"
-                      onError={() => handleImageError(certifications[selectedCert].id)}
+                      className="max-h-[500px] max-w-full rounded-lg object-contain"
+                      onError={() =>
+                        handleImageError(certifications[selectedCert].id)
+                      }
                     />
                   ) : (
-                    <div className="aspect-video w-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-gray-700/50 flex items-center justify-center">
+                    <div className="flex aspect-video w-full items-center justify-center rounded-lg border border-gray-700/50 bg-gradient-to-br from-gray-800 to-gray-900">
                       <div className="text-center">
-                        <Award className="w-20 h-20 text-cyan-400/30 mb-4 mx-auto" />
-                        <p className="text-gray-400 text-lg">Imagen no disponible</p>
-                        <p className="text-gray-500 text-sm mt-2">{certifications[selectedCert].title}</p>
+                        <Award className="mx-auto mb-4 h-20 w-20 text-cyan-400/30" />
+                        <p className="text-lg text-gray-400">
+                          Imagen no disponible
+                        </p>
+                        <p className="mt-2 text-sm text-gray-500">
+                          {certifications[selectedCert].title}
+                        </p>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <Info className="w-5 h-5 text-cyan-400" />
+                  <h4 className="mb-4 flex items-center gap-2 font-semibold text-white">
+                    <Info className="h-5 w-5 text-cyan-400" />
                     Información del Certificado
                   </h4>
                   <div className="space-y-3">
                     {[
-                      ["Emisor", certifications[selectedCert].issuer, "text-white"],
-                      ["Fecha", certifications[selectedCert].date, "text-white"],
-                      ["ID", certifications[selectedCert].credentialId, "text-cyan-400 font-mono"],
-                      ["Nivel", certifications[selectedCert].level, "text-amber-400"],
+                      [
+                        "Emisor",
+                        certifications[selectedCert].issuer,
+                        "text-white",
+                      ],
+                      [
+                        "Fecha",
+                        certifications[selectedCert].date,
+                        "text-white",
+                      ],
+                      [
+                        "ID",
+                        certifications[selectedCert].credentialId,
+                        "text-cyan-400 font-mono",
+                      ],
+                      [
+                        "Nivel",
+                        certifications[selectedCert].level,
+                        "text-amber-400",
+                      ],
                     ].map(([label, value, cls]) => (
-                      <div key={label} className="flex justify-between py-2 border-b border-gray-700/30">
+                      <div
+                        key={label}
+                        className="flex justify-between border-b border-gray-700/30 py-2"
+                      >
                         <span className="text-gray-400">{label}:</span>
                         <span className={`font-medium ${cls}`}>{value}</span>
                       </div>
@@ -346,13 +390,16 @@ export default function CertificationsSection() {
                 </div>
 
                 <div>
-                  <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-400" />
+                  <h4 className="mb-4 flex items-center gap-2 font-semibold text-white">
+                    <CheckCircle2 className="h-5 w-5 text-green-400" />
                     Habilidades Validadas
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {certifications[selectedCert].skills.map((skill, i) => (
-                      <span key={i} className="px-3 py-2 rounded-lg bg-gray-700/50 text-cyan-400 border border-cyan-400/20 font-medium text-sm">
+                      <span
+                        key={i}
+                        className="rounded-lg border border-cyan-400/20 bg-gray-700/50 px-3 py-2 text-sm font-medium text-cyan-400"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -360,21 +407,21 @@ export default function CertificationsSection() {
                 </div>
               </div>
 
-              <div className="flex gap-4 mt-8 pt-6 border-t border-gray-700/50">
+              <div className="mt-8 flex gap-4 border-t border-gray-700/50 pt-6">
                 <a
                   href={certifications[selectedCert].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-4 px-6 rounded-xl hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+                  className="inline-flex flex-1 items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="h-4 w-4" />
                   Verificar en Sitio Oficial
                 </a>
                 <button
                   onClick={handleDownload}
-                  className="inline-flex items-center justify-center gap-3 bg-gray-700/50 border border-gray-600/50 text-gray-300 font-semibold py-4 px-6 rounded-xl hover:border-cyan-400/30 hover:text-white transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 rounded-xl border border-gray-600/50 bg-gray-700/50 px-6 py-4 font-semibold text-gray-300 transition-all duration-300 hover:border-cyan-400/30 hover:text-white"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="h-4 w-4" />
                   Descargar PDF
                 </button>
               </div>
