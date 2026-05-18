@@ -1,7 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-const ProjectCard = ({
+// Interfaces para tipar la estructura de datos
+interface Tag {
+  name: string;
+  class: string;
+  icon?: string;
+}
+
+interface ProjectCardProps {
+  image: string;
+  title: string;
+  description: string;
+  tags?: Tag[];
+  github?: string | null;
+  route?: string | null;
+  pageTitle?: string | null;
+  himagelg?: string;
+  himagexl?: string;
+}
+
+export default function ProjectCard({
   image,
   title,
   description,
@@ -11,8 +29,12 @@ const ProjectCard = ({
   pageTitle = null,
   himagelg = "auto",
   himagexl = "auto",
-}) => {
+}: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Mapeo seguro de alturas para evitar interpolación de strings rota en el render de Tailwind
+  const getLgHeightClass = (h: string) => (h === "70" ? "lg:h-70" : "lg:h-auto");
+  const getXlHeightClass = (h: string) => (h === "70" ? "xl:h-70" : "xl:h-auto");
 
   return (
     <article 
@@ -35,15 +57,15 @@ const ProjectCard = ({
           {/* Iconos de escritorio al fondo */}
           <div className="absolute top-4 left-1 flex flex-col gap-5 text-center text-sm text-gray-300 font-semibold z-0">
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src={`/images/desk/carpeta-mac-48.png`} alt="Files-mac" className="w-12 h-12"/>
+              <img src="/images/desk/carpeta-mac-48.png" alt="Files-mac" className="w-12 h-12" />
               <span>Proyectos</span>
             </div>
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src={'/images/desk/notes_icon.svg'} alt="Notes-mac" className="w-12 h-12" />
+              <img src="/images/desk/notes_icon.svg" alt="Notes-mac" className="w-12 h-12" />
               <span>Notas</span>
             </div>
             <div className="flex flex-col items-center transition-transform duration-300 hover:scale-110">
-              <img src={'images/desk/discord.png'} alt="Discord" className="w-12 h-12" />
+              <img src="/images/desk/discord.png" alt="Discord" className="w-12 h-12" />
               <span>Discord</span>
             </div>
           </div>
@@ -51,6 +73,7 @@ const ProjectCard = ({
           {/* Contenido ventana */}
           <div className="px-8 py-8 relative z-20 p-30">
             <div className="overflow-hidden rounded-xl bg-gray-800 shadow-2xl w-full max-w-3xl mx-auto border border-gray-600/50">
+              
               {/* Barra navegador mejorada */}
               <div className="flex items-center bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-3 border-b border-gray-600">
                 <div className="flex space-x-2 mr-4">
@@ -70,10 +93,9 @@ const ProjectCard = ({
                 <img
                   src={`/${image}`}
                   alt={title}
-                  className={`w-full h-40 lg:h-${himagelg} xl:h-${himagexl} md:h-70 max-h-72 object-cover transition duration-700 group-hover:scale-105`}
+                  className={`w-full h-40 md:h-70 max-h-72 object-cover transition duration-700 group-hover:scale-105 ${getLgHeightClass(himagelg)} ${getXlHeightClass(himagexl)}`}
                   loading="lazy"
                 />
-                {/* Overlay sutil al hacer hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
@@ -83,14 +105,14 @@ const ProjectCard = ({
           <div className="absolute bottom-0 w-full h-14 bg-gradient-to-t from-gray-800 to-gray-900 border-t border-gray-600/50"></div>
           <div className="absolute bottom-2 left-0 w-full flex justify-center items-center px-4 gap-6 z-30">
             <div className="flex items-center gap-6 bg-gray-800/80 backdrop-blur-sm px-6 py-2 rounded-xl border border-gray-600/50">
-              <img src={'images/desk/spotify.svg'} alt="Spotify" className="w-6 h-6 hover:scale-110 transition-transform"/>
+              <img src="/images/desk/spotify.svg" alt="Spotify" className="w-6 h-6 hover:scale-110 transition-transform" />
               <div className="relative">
-                <img src={'images/desk/safari.svg'} alt="Safari" className="w-8 h-8 bg-blue-500/20 rounded-lg p-1 hover:scale-110 transition-transform"/>
+                <img src="/images/desk/safari.svg" alt="Safari" className="w-8 h-8 bg-blue-500/20 rounded-lg p-1 hover:scale-110 transition-transform" />
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               </div>
-              <img src={'images/desk/visual-studio-code.svg'} alt="VSCode" className="w-6 h-6 hover:scale-110 transition-transform"/>
-              <img src={'images/desk/app-store.svg'} alt="App Store" className="w-6 h-6 hover:scale-110 transition-transform"/>
-              <img src={'images/desk/gmail-icon.svg'} alt="Gmail" className="w-6 h-6 hover:scale-110 transition-transform"/>
+              <img src="/images/desk/visual-studio-code.svg" alt="VSCode" className="w-6 h-6 hover:scale-110 transition-transform" />
+              <img src="/images/desk/app-store.svg" alt="App Store" className="w-6 h-6 hover:scale-110 transition-transform" />
+              <img src="/images/desk/gmail-icon.svg" alt="Gmail" className="w-6 h-6 hover:scale-110 transition-transform" />
             </div>
           </div>
         </div>
@@ -102,17 +124,17 @@ const ProjectCard = ({
           {title}
         </h3>
         
-        <div className="flex flex-wrap mb-4 gap-2">
+        <ul className="flex flex-wrap mb-4 gap-2 pl-0">
           {tags.map((tag, i) => (
             <li
               key={i}
               className={`flex items-center gap-2 text-xs px-3 py-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-105 ${tag.class}`}
             >
-              {tag.icon && <img src={`/${tag.icon}`} alt={tag.name} className="w-4 h-4" />}
+              {tag.icon && <img src={`/${tag.icon}`} alt={tag.name} className="w-4 h-4 object-contain" />}
               {tag.name}
             </li>
           ))}
-        </div>
+        </ul>
 
         <p className="text-gray-400 leading-relaxed mb-6 group-hover:text-gray-300 transition-colors duration-300">
           {description}
@@ -144,7 +166,6 @@ const ProjectCard = ({
                 <span>Ver Proyecto</span>
               </span>
             </a>
-
           )}
         </div>
 
@@ -156,6 +177,4 @@ const ProjectCard = ({
       </div>
     </article>
   );
-};
-
-export default ProjectCard;
+}
